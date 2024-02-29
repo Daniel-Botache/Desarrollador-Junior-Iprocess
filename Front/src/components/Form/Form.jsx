@@ -31,7 +31,10 @@ const Form = ({ handleAddUser }) => {
 
     try {
       const newUser = { name, tel, email };
-      const response = await axios.post("http://localhost:3001/user", newUser);
+      const response = await axios.post(
+        "desarrollador-junior-iprocess-production.up.railway.app/user",
+        newUser
+      );
       handleAddUser(response.data);
       setName("");
       setTel("");

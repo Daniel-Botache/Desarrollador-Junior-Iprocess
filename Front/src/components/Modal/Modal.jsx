@@ -27,7 +27,10 @@ const Modal = ({ user, handleClose, handleUpdateUser }) => {
 
     try {
       const updatedUser = { id: user.id, name, tel, email };
-      await axios.put(`http://localhost:3001/user/${user.id}`, updatedUser);
+      await axios.put(
+        `desarrollador-junior-iprocess-production.up.railway.app/user/${user.id}`,
+        updatedUser
+      );
       handleUpdateUser(updatedUser);
       showSnackbar("Usuario actualizado exitosamente", "success");
     } catch (error) {

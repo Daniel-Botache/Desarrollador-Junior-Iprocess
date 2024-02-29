@@ -12,7 +12,9 @@ const Table = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/user");
+        const response = await axios.get(
+          "desarrollador-junior-iprocess-production.up.railway.app/user"
+        );
         setUsers(response.data);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -41,7 +43,9 @@ const Table = () => {
 
   const handleDeleteUser = async (userId) => {
     try {
-      await axios.delete(`http://localhost:3001/user/${userId}`);
+      await axios.delete(
+        `desarrollador-junior-iprocess-production.up.railway.app/user/${userId}`
+      );
       setUsers(users.filter((user) => user.id !== userId));
       console.log(`Usuario con ID ${userId} eliminado exitosamente`);
     } catch (error) {
