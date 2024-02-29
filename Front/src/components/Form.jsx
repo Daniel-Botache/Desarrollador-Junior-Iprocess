@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useSnackbar } from "notistack";
 
 const Form = ({ handleAddUser }) => {
+  const { enqueueSnackbar } = useSnackbar();
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
@@ -11,6 +13,7 @@ const Form = ({ handleAddUser }) => {
     e.preventDefault();
     if (!validateEmail(email)) {
       setEmailError("Por favor, introduce un email válido.");
+      showSnackbar("Por favor, introduce un email válido.", "error");
       return;
     }
 
@@ -22,15 +25,21 @@ const Form = ({ handleAddUser }) => {
       setTel("");
       setEmail("");
       setEmailError("");
+      showSnackbar("Usuario agregado exitosamente", "success");
       console.log("Usuario agregado exitosamente:", response.data);
     } catch (error) {
       console.error("Error al agregar usuario:", error);
+      showSnackbar("Error al agregar usuario", "error");
     }
   };
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
+  };
+
+  const showSnackbar = (message, variant) => {
+    enqueueSnackbar(message, { variant: variant });
   };
 
   return (
@@ -59,7 +68,7 @@ const Form = ({ handleAddUser }) => {
         onChange={(e) => setEmail(e.target.value)}
         required
       />
-      {emailError && <p style={{ color: "red" }}>{emailError}</p>}
+
       <button type="submit">Agregar Usuario</button>
     </form>
   );

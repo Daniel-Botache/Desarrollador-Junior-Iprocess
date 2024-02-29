@@ -1,14 +1,15 @@
 import React from "react";
+import { SnackbarProvider } from "notistack";
 import Table from "./components/Table";
-import axios from "axios";
-axios.defaults.baseURL = "http://localhost:3001/user";
 
 const App = () => {
   return (
-    <div>
-      <h1>User Table</h1>
-      <Table />
-    </div>
+    <SnackbarProvider maxSnack={3}>
+      <div className="App">
+        <h1>My App</h1>
+        <Table />
+      </div>
+    </SnackbarProvider>
   );
 };
 

@@ -1,30 +1,64 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useSnackbar } from "notistack";
 
 const Modal = ({ user, handleClose, handleUpdateUser }) => {
+  const { enqueueSnackbar } = useSnackbar();
+
   const [name, setName] = useState(user.name);
   const [tel, setTel] = useState(user.tel);
   const [email, setEmail] = useState(user.email);
-  const [emailError, setEmailError] = useState("");
 
   const handleUpdate = async () => {
-    if (!validateEmail(email)) {
-      setEmailError("Por favor, introduce un email válido.");
+    const telValid = validateTel(tel);
+    const emailValid = validateEmail(email);
+
+    if (!telValid.success) {
+      showSnackbar(telValid.message, "error");
+      return;
+    }
+
+    if (!emailValid.success) {
+      showSnackbar(emailValid.message, "error");
       return;
     }
 
     try {
       const updatedUser = { id: user.id, name, tel, email };
       await axios.put(`http://localhost:3001/user/${user.id}`, updatedUser);
-      handleUpdateUser(updatedUser); // Llamamos a la función para actualizar el usuario en Table
+      handleUpdateUser(updatedUser);
+      showSnackbar("Usuario actualizado exitosamente", "success");
     } catch (error) {
       console.error("Error al actualizar el usuario:", error);
+      showSnackbar("Error al actualizar el usuario", "error");
     }
+  };
+
+  const validateTel = (tel) => {
+    const telRegex = /^[0-9]{4,15}$/;
+    if (!telRegex.test(tel)) {
+      return {
+        success: false,
+        message:
+          "El teléfono debe tener entre 4 y 15 caracteres y contener solo números.",
+      };
+    }
+    return { success: true };
   };
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
+    if (!re.test(String(email).toLowerCase())) {
+      return {
+        success: false,
+        message: "Por favor, introduce un email válido.",
+      };
+    }
+    return { success: true };
+  };
+
+  const showSnackbar = (message, variant) => {
+    enqueueSnackbar(message, { variant: variant });
   };
 
   return (
@@ -55,7 +89,6 @@ const Modal = ({ user, handleClose, handleUpdateUser }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        {emailError && <p style={{ color: "red" }}>{emailError}</p>}
         <button onClick={handleUpdate}>Guardar Cambios</button>
       </div>
     </div>
