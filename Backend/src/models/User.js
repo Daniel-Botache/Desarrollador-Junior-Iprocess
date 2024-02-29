@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 // Exporto una funcion que define el modelo
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Store', {
+  sequelize.define('User', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -12,11 +12,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    price: {
-        type: DataTypes.INTEGER,
+    email: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
-    stock:  {
+    tel:  {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
