@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSnackbar } from "notistack";
+import { isValidEmail, validateTel } from "../validations/validation";
 
 const Modal = ({ user, handleClose, handleUpdateUser }) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -11,7 +12,7 @@ const Modal = ({ user, handleClose, handleUpdateUser }) => {
 
   const handleUpdate = async () => {
     const telValid = validateTel(tel);
-    const emailValid = validateEmail(email);
+    const emailValid = isValidEmail(email);
 
     if (!telValid.success) {
       showSnackbar(telValid.message, "error");
@@ -34,30 +35,12 @@ const Modal = ({ user, handleClose, handleUpdateUser }) => {
     }
   };
 
-  const validateTel = (tel) => {
-    const telRegex = /^[0-9]{4,15}$/;
-    if (!telRegex.test(tel)) {
-      return {
-        success: false,
-        message:
-          "El teléfono debe tener entre 4 y 15 caracteres y contener solo números.",
-      };
-    }
-    return { success: true };
-  };
-
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!re.test(String(email).toLowerCase())) {
-      return {
-        success: false,
-        message: "Por favor, introduce un email válido.",
-      };
-    }
-    return { success: true };
-  };
-
   const showSnackbar = (message, variant) => {
+    // Asegúrate de que message sea una cadena
+    if (typeof message !== "string") {
+      message = "Por favor, introduce un email válido.";
+    }
+
     enqueueSnackbar(message, { variant: variant });
   };
 
