@@ -13,7 +13,7 @@ const Table = () => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "https://desarrollador-junior-iprocess-production.up.railway.app//user"
+          "https://desarrollador-junior-iprocess-production.up.railway.app/user"
         );
         setUsers(response.data);
       } catch (error) {

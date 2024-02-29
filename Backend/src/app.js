@@ -5,7 +5,7 @@ const cors = require("cors");
 const router = require("./routes/index.js");
 
 const corsOptions = {
-  origin: "*",
+  origin: "https://desarrollador-junior-iprocess-v2j8.vercel.app/",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 };
