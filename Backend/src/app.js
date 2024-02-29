@@ -24,5 +24,12 @@ app.use(cors(corsOptions));
 
 // Rutas
 app.use("/", router);
+// Middleware para manejar el CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://desarrollador-junior-iprocess-v2j8.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 module.exports = { app };
