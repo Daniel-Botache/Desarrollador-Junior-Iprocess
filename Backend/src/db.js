@@ -37,7 +37,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { railway } = sequelize.models;
+const { User } = sequelize.models;
 
 module.exports = {
     ...sequelize.models,
