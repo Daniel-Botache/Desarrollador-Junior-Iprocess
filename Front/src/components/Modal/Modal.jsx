@@ -28,7 +28,7 @@ const Modal = ({ user, handleClose, handleUpdateUser }) => {
     try {
       const updatedUser = { id: user.id, name, tel, email };
       await axios.put(
-        `desarrollador-junior-iprocess-production.up.railway.app/user/${user.id}`,
+        `https://desarrollador-junior-iprocess-production.up.railway.app/user/${user.id}`,
         updatedUser
       );
       handleUpdateUser(updatedUser);
