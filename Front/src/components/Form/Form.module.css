@@ -1,0 +1,28 @@
+.principalForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-around   ;
+    background-color: #e6e6e6;
+    height: 60px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.2em;
+    color: #a39583;
+}
+.submitButton{
+    background-color: #bbb3ab ;
+    border: none;
+    padding: 1em;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 0.8rem;
+}
+.submitButton:hover{    background-color: transparent;
+    color: #bbb3ab;
+    border: 1px solid #bbb3ab;
+}
+.inputForm{
+    border: none;
+    font-size: 0.8rem;
+    margin-left: 10px;
+    border-radius: 5px;
+}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Cell from "./Cell";
-import Modal from "./Modal";
-import Form from "./Form";
+import Cell from "../Cell/Cell";
+import Modal from "../Modal/Modal";
+import Form from "../Form/Form";
+import styles from "./Table.module.css";
 
 const Table = () => {
   const [users, setUsers] = useState([]);
@@ -25,6 +26,7 @@ const Table = () => {
     setUsers([...users, newUser]);
     console.log("Nuevo usuario agregado:", newUser);
   };
+
   const handleEditUser = (user) => {
     setSelectedUser(user);
   };
@@ -48,18 +50,19 @@ const Table = () => {
   };
 
   return (
-    <div>
+    <div className={styles.principalContainer}>
+      <h1 className={styles.principalContainer_H1}>Lista de usuarios</h1>
       <Form handleAddUser={handleAddUser} />
-      <table>
+      <table className={styles.titlesContainer}>
         <thead>
-          <tr>
+          <tr className={styles.theadContainer}>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className={styles.tbodyContainer}>
           {users.map((user) => (
             <Cell
               key={user.id}
@@ -71,11 +74,15 @@ const Table = () => {
         </tbody>
       </table>
       {selectedUser && (
-        <Modal
-          user={selectedUser}
-          handleClose={() => setSelectedUser(null)}
-          handleUpdateUser={handleUpdateUser}
-        />
+        <div className={styles.modalContainer}>
+          <div className={styles.modalContent}>
+            <Modal
+              user={selectedUser}
+              handleClose={() => setSelectedUser(null)}
+              handleUpdateUser={handleUpdateUser}
+            />
+          </div>
+        </div>
       )}
     </div>
   );

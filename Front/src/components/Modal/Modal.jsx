@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSnackbar } from "notistack";
-import { isValidEmail, validateTel } from "../validations/validation";
+import { isValidEmail, validateTel } from "../../validations/validation";
+import styles from "./Modal.module.css";
 
 const Modal = ({ user, handleClose, handleUpdateUser }) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -47,32 +48,47 @@ const Modal = ({ user, handleClose, handleUpdateUser }) => {
   return (
     <div className="modal">
       <div className="modal-content">
-        <span className="close" onClick={handleClose}>
-          &times;
-        </span>
-        <h2>Editar Usuario</h2>
-        <label htmlFor="name">Nombre:</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label htmlFor="tel">Teléfono:</label>
-        <input
-          type="text"
-          id="tel"
-          value={tel}
-          onChange={(e) => setTel(e.target.value)}
-        />
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <button onClick={handleUpdate}>Guardar Cambios</button>
+        <div className={styles.closebtnContainer}>
+          <span className="close" onClick={handleClose}>
+            &times;
+          </span>
+        </div>
+        <h2 className={styles.principalh2}>Editar Usuario</h2>
+        <div className={styles.formContainer}>
+          <label htmlFor="name" className={styles.labelForm}>
+            Nombre:
+          </label>
+          <input
+            className={styles.inputForm}
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <label htmlFor="tel" className={styles.labelForm}>
+            Teléfono:
+          </label>
+          <input
+            className={styles.inputForm}
+            type="text"
+            id="tel"
+            value={tel}
+            onChange={(e) => setTel(e.target.value)}
+          />
+          <label htmlFor="email" className={styles.labelForm}>
+            Email:
+          </label>
+          <input
+            className={styles.inputForm}
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button onClick={handleUpdate} className={styles.submitButton}>
+            Guardar Cambios
+          </button>
+        </div>
       </div>
     </div>
   );

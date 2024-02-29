@@ -1,0 +1,50 @@
+.trContainer{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(213, 221, 221);
+    border-radius: 5px;
+    margin-top: 0.2em;
+}
+
+.trContainer_td{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+width: 20%;
+color:#a39583
+}
+
+.buttonsContainer{
+    margin-left: 3em;
+}
+
+.buttonsContainer_btnEdit{
+    background-color: #0084ff ;
+    border: none;
+    padding: 1em;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 0.8rem;
+    margin:0.1em
+}
+.buttonsContainer_btnDelete{
+    background-color: #9e4545 ;
+    border: none;
+    padding: 1em;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 0.8rem;
+    margin:0.1em
+}
+
+.buttonsContainer_btnEdit:hover{
+    background-color: #ffffff ;
+    border: 1px solid #0084ff;
+    color: #0084ff;
+}
+.buttonsContainer_btnDelete:hover{
+    background-color: #ffffff ;
+    border: 1px solid #9e4545;
+    color: #9e4545;
+}

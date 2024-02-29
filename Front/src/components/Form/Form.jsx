@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSnackbar } from "notistack";
-import { isValidEmail, validateTel } from "../validations/validation"; // Importa validateTel
+import { isValidEmail, validateTel } from "../../validations/validation";
+import styles from "./Form.module.css";
 
 const Form = ({ handleAddUser }) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -9,7 +10,7 @@ const Form = ({ handleAddUser }) => {
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [telError, setTelError] = useState(""); // Agrega el estado para el error de teléfono
+  const [telError, setTelError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,32 +51,43 @@ const Form = ({ handleAddUser }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Nombre:</label>
-      <input
-        type="text"
-        id="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-      <label htmlFor="tel">Teléfono:</label>
-      <input
-        type="text"
-        id="tel"
-        value={tel}
-        onChange={(e) => setTel(e.target.value)}
-        required
-      />
-      <label htmlFor="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <button type="submit">Agregar Usuario</button>
+    <form onSubmit={handleSubmit} className={styles.principalForm}>
+      <div className={styles.nameContainer}>
+        <label htmlFor="name">Nombre:</label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+          className={styles.inputForm}
+        />
+      </div>
+      <div className={styles.telContainer}>
+        <label htmlFor="tel">Teléfono:</label>
+        <input
+          className={styles.inputForm}
+          type="text"
+          id="tel"
+          value={tel}
+          onChange={(e) => setTel(e.target.value)}
+          required
+        />
+      </div>
+      <div className={styles.emailContainer}>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className={styles.inputForm}
+        />
+      </div>
+      <button type="submit" className={styles.submitButton}>
+        Agregar Usuario
+      </button>
     </form>
   );
 };
