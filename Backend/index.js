@@ -1,15 +1,13 @@
-const server = require("./src/server");
+const { app } = require("./src/app.js");
 const { conn } = require("./src/db.js");
-const { saveCountriesHandler } = require("./src/handlers/countryHandlers");
-
-const PORT = 3001;
+require("dotenv").config();
+const { SERVER_PORT } = process.env;
 
 conn
   .sync({ force: true })
   .then(() => {
-    server.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}`);
+    app.listen(SERVER_PORT, () => {
+      console.log(`Server listening on port ${SERVER_PORT}`);
     });
-    saveCountriesHandler();
   })
   .catch((error) => console.error(error));
