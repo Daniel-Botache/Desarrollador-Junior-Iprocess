@@ -23,7 +23,7 @@ app.use(cors({
 app.use("/", router);
 
 // Middleware para manejar el CORS
-server.use((req, res, next) => {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
