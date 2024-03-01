@@ -6,11 +6,12 @@ const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT } = process.env;
 
 const sequelize = new Sequelize(
-    `postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
-  {
-    logging: false,
-    native: false,
-  }
+  `postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  { logging: false, native: false, dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // Deshabilitar la verificación del certificado para fines de prueba (no recomendado en producción)
+    }, }}
 );
 const basename = path.basename(__filename);
 
