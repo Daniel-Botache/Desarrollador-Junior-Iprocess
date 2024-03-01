@@ -5,6 +5,7 @@ const cors = require("cors");
 const router = require("./routes/index.js");
 
 const app = express();
+app.name = "API";
 
 // Json parser
 app.use(express.json());
@@ -29,6 +30,14 @@ app.use((req, res, next) => {
   );
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
+});
+
+app.use((err, req, res, next) => {
+  // eslint-disable-line no-unused-vars
+  const status = err.status || 500;
+  const message = err.message || err;
+  console.error(err);
+  res.status(status).send(message);
 });
 // Rutas
 app.use("/", router);

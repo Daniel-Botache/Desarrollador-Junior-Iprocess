@@ -13,7 +13,7 @@ const Table = () => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "https://desarrollador-junior-iprocess-production.up.railway.app/user"
+          "http://desarrollador-junior-iprocess-production.up.railway.app/user"
         );
         setUsers(response.data);
       } catch (error) {
@@ -44,7 +44,7 @@ const Table = () => {
   const handleDeleteUser = async (userId) => {
     try {
       await axios.delete(
-        `https://desarrollador-junior-iprocess-production.up.railway.app/user/${userId}`
+        `http://desarrollador-junior-iprocess-production.up.railway.app/user/${userId}`
       );
       setUsers(users.filter((user) => user.id !== userId));
       console.log(`Usuario con ID ${userId} eliminado exitosamente`);

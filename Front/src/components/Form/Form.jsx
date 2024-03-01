@@ -32,7 +32,7 @@ const Form = ({ handleAddUser }) => {
     try {
       const newUser = { name, tel, email };
       const response = await axios.post(
-        "https://desarrollador-junior-iprocess-production.up.railway.app/user",
+        "http://desarrollador-junior-iprocess-production.up.railway.app/user",
         newUser
       );
       handleAddUser(response.data);
